@@ -59,7 +59,7 @@
                 </h3>
                 <div class="card-tools">
                   <a class="btn btn-danger" href="qr_list.php"> <i class="fas fa-qrcode"></i> Print QRCode</a>
-                  <a class="btn btn-success" href="qr_print.php?action=generate"> <i class="fas fa-qrcode"></i> Generate Blank QRCode</a>
+                  <a class="btn btn-success" data-toggle="modal" data-target="#modal-generate_qr"> <i class="fas fa-qrcode"></i> Generate Blank QRCode</a>
                 </div>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -82,7 +82,7 @@
                     $i=0;
                     while ($row=mysqli_fetch_array($query)){
                     $id=$row['user_id'];
-                    //$city=$row['city_name'];
+                    $sex=$row['user_sex'];
                     $i++;      
                   ?>       
                   <tr>
@@ -134,6 +134,22 @@
                                   </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Sex</label>
+                                      <div class="col-sm-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Male" <?php if ($sex=="Male") echo "checked";?> required="true">
+                                          <label class="form-check-label">Male</label>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Female" required="true" <?php if ($sex=="Female") echo "checked";?>>
+                                          <label class="form-check-label">Female</label>
+                                        </div>
+                                      </div>
+                                    
+                                </div>
+                                <div class="form-group row">
                                   <label for="inputEmail3" class="col-sm-4 col-form-label">Contact #</label>
                                   <div class="col-sm-8">
                                     <input type="text" class="form-control" id="inputEmail3" placeholder="Contact #" name="contact" value="<?php echo $row['user_contact'];?>">
@@ -173,6 +189,12 @@
                                           <option value="<?php echo $row2['cat_id'];?>"><?php echo $row2['cat_name'];?></option>
                                     <?php }?>
                                     </select>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="inputEmail3" class="col-sm-4 col-form-label">Audio</label>
+                                  <div class="col-sm-8">
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1" placeholder="Upload Audio Here" name="audio_new"><input type="hidden" name="audio" value="<?php echo $row['audio'];?>">
                                   </div>
                                 </div>
                               </div>
@@ -231,6 +253,32 @@
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->
+            <!-- /.modal -->
+                      <div class="modal fade" id="modal-generate_qr">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <form method="post" action="qr_print.php">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Generate Blank QRCode</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                
+                                <input type="number" class="form-control" id="inputEmail3" placeholder="# of QRCode to be generated" name="qr" value="12">
+                              </div>
+                              <div class="modal-footer justify-content-between">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success" name="generate">Generate</button>
+                              </div>
+                            </form>
+                          </div>
+                          <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                      </div>
+                      <!-- /.modal -->
           </section>
           <!-- /.Left col -->
           <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -263,13 +311,13 @@
                     <div class="row">
                       <div class="col-lg-4">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Male" checked>
+                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Male" checked required="true">
                           <label class="form-check-label">Male</label>
                         </div>
                       </div>
                       <div class="col-lg-4">
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Female">
+                          <input class="form-check-input" type="radio" id="sex" name="sex" value="Female" required="true">
                           <label class="form-check-label">Female</label>
                         </div>
                       </div>

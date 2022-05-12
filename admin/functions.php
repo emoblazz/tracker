@@ -78,16 +78,24 @@ if (isset($_POST['delete_user']))
 if (isset($_POST['update_user']))
 {
 	$id = $_POST['id'];
-	$last = $_POST['last'];
-	$first = $_POST['first'];
+	$last = strtoupper($_POST['last']);
+	$first = strtoupper($_POST['first']);
 	$bday = $_POST['bday'];
 	$contact = $_POST['contact'];
-	$address = $_POST['address'];
+	$address = strtoupper($_POST['address']);
 	$city = $_POST['city'];
 	$category = $_POST['category'];
 	$sex = $_POST['sex'];
+	
+	if ($_POST['audio_new']<>""){
+		$audio = "dist/audio/".$_POST['audio_new'];
+	}
+	else
+	{
+		$audio = $_POST['audio'];
+	}
 
-	 mysqli_query($con,"UPDATE user SET user_last='$last',user_first='$first',user_bday='$bday',user_contact='$contact',user_address='$address',city_id='$city',cat_id='$category',user_sex='$sex' where user_id='$id'") or die(mysqli_error()); 
+	 mysqli_query($con,"UPDATE user SET user_last='$last',user_first='$first',user_bday='$bday',user_contact='$contact',user_address='$address',city_id='$city',cat_id='$category',user_sex='$sex',audio='$audio' where user_id='$id'") or die(mysqli_error()); 
 	 echo "<script>document.location='user.php'</script>";   
 }
 //Add User
@@ -95,11 +103,11 @@ if (isset($_POST['add_user']))
 {
 	include '../plugins/phpqrcode/qrlib.php';
 	include '../dist/includes/dbcon.php';
-	$last = $_POST['last'];
-	$first = $_POST['first'];
+	$last = strtoupper($_POST['last']);
+	$first = strtoupper($_POST['first']);
 	$bday = $_POST['bday'];
 	$contact = $_POST['contact'];
-	$address = $_POST['address'];
+	$address = strtoupper($_POST['address']);
 	$city = $_POST['city'];
 	$category = $_POST['category'];
 	$sex = $_POST['sex'];
@@ -166,5 +174,33 @@ if (isset($_POST['delete_admin']))
 	
 	 mysqli_query($con,"DELETE from admin where admin_id='$id'") or die(mysqli_error()); 
 	 echo "<script>document.location='admin.php'</script>";   
+}
+//Add Settings
+if (isset($_POST['add_settings']))
+{
+	$email = $_POST['email'];
+	$time = $_POST['time'];
+	
+	mysqli_query($con,"INSERT INTO setting(email,`time`) VALUES('$email','$time')")or die(mysqli_error($con));  
+	echo "<script type='text/javascript'>alert('Successfully added new settings!');</script>";	
+	echo "<script>document.location='settings.php'</script>";   
+}
+//Delete Settings	
+if (isset($_POST['delete_setting']))
+{
+	$id = $_POST['id'];
+	
+	 mysqli_query($con,"DELETE from setting where setting_id='$id'") or die(mysqli_error()); 
+	 echo "<script>document.location='settings.php'</script>";   
+}
+//Update Settings
+if (isset($_POST['update_setting']))
+{
+	$id = $_POST['id'];
+	$email = $_POST['email'];
+	$time = $_POST['time'];
+
+	 mysqli_query($con,"UPDATE setting SET email='$email',`time`='$time' where setting_id='$id'") or die(mysqli_error()); 
+	 echo "<script>document.location='settings.php'</script>";   
 }
 ?>

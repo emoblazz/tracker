@@ -62,10 +62,11 @@
                   <?php 
                   include '../dist/includes/dbcon.php';    
                   include '../plugins/phpqrcode/qrlib.php';
-                 
+                  
                   if (isset($_POST['print']))
                   {
                     $ii=0;
+
                     $selected=$_POST['selected'];
                     foreach ($selected as $value) {
                         $query=mysqli_query($con,"select * from user where user_id='$value'")or die(mysqli_error($con));
@@ -81,13 +82,14 @@
                     }
 
                   }
-                  else  
+                  if (isset($_POST['generate']))
                   {
+                      $stop=$_POST['qr'];
                       $i=0;   
                       $ids=array();             
-                      while ($i<12)
+                      while ($i<$stop)
                       {
-                        mysqli_query($con,"INSERT INTO user(user_bday) VALUES('0000-00-00')")or die(mysqli_error($con)); 
+                        mysqli_query($con,"INSERT INTO user(user_bday) VALUES('1980-01-01')")or die(mysqli_error($con)); 
                         $ids[]=mysqli_insert_id($con);
                         $i++;
                       }
