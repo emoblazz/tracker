@@ -25,7 +25,7 @@ $mail->SMTPAuth = true;     // turn on SMTP authentication
 // In this case, we setup a test email account with the following credentials:
 // email: send_from_PHPMailer@bradm.inmotiontesting.com
 // pass: password
-$mail->Username = "emoblazz14@gmail.com";  // SMTP username
+$mail->Username = "leepipez14@gmail.com";  // SMTP username
 $mail->Password = "july302011A!"; // SMTP password
 
 // $email is the user's email address the specified
@@ -33,7 +33,7 @@ $mail->Password = "july302011A!"; // SMTP password
 // the top of this page with:
 $email = "emoblazz@gmail.com";
 //$mail->From = "bsischmsc.gmail.com";
-$mail->SetFrom("302685.sanjhs@deped.gov.ph", "San Isidro NHS, Pontevedra");
+$mail->SetFrom("leepipez14@gmail.com", "San Isidro NHS, Pontevedra");
 // below we want to set the email address we will be sending our email to.
 $mail->AddAddress("$email");
 

@@ -135,7 +135,7 @@
                         <td>Male</td>
                         <td>
                           <?php 
-                            $query=mysqli_query($con,"select *, COUNT(*) as total,date_format(track_date, '%Y-%m-%d') as formatted_date from track natural join user where user_sex='Male' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end'")or die(mysqli_error($con));
+                            $query=mysqli_query($con,"select COUNT(user_id) as total,user_sex from track inner join user using (user_id) where user_sex='Male' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user_sex")or die(mysqli_error($con));
                               $row=mysqli_fetch_array($query);
                               //$count=mysqli_num_rows($query);
                               
@@ -150,7 +150,7 @@
                         <td>Female</td>
                         <td>
                           <?php 
-                            $query1=mysqli_query($con,"select *, COUNT(*) as total,date_format(track_date, '%Y-%m-%d') as formatted_date from track natural join user where user_sex='Female' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end'")or die(mysqli_error($con));
+                            $query1=mysqli_query($con,"select COUNT(user_id) as total,user_sex from track inner join user using (user_id) where user_sex='Female' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user_sex")or die(mysqli_error($con));
                               $row1=mysqli_fetch_array($query1);
                               //$count1=mysqli_num_rows($query1);
                               

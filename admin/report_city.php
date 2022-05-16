@@ -17,7 +17,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
+  <!-- Preloader--> 
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="../dist/img/logo.png" alt="SINHSLogo" height="60" width="60">
   </div>
@@ -131,7 +131,7 @@
                         <td><?php echo $row['city_name'];?>
                         <td>
                           <?php 
-                            $query1=mysqli_query($con,"select *, COUNT(*) as total,date_format(track_date, '%Y-%m-%d') as formatted_date from track natural join user where user.city_id='$id' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user.city_id;")or die(mysqli_error($con));
+                            $query1=mysqli_query($con,"select COUNT(user_id) as total from track inner join user using(user_id) where user.city_id='$id' and date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user.city_id")or die(mysqli_error($con));
                               $row1=mysqli_fetch_array($query1);
                               $count=mysqli_num_rows($query1);
                               if ($count>0)

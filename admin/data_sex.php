@@ -7,7 +7,7 @@ include('../dist/includes/dbcon.php');
 $start=$_SESSION['start'];
 $end=$_SESSION['end'];
            
-$result = mysqli_query($con,"select *, COUNT(*) as total,date_format(track_date, '%Y-%m-%d') as formatted_date from track natural join user where date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user_sex");
+$result = mysqli_query($con,"select user_sex,COUNT(user_sex) as total from `user` inner join `track` USING (user_id) where date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by user_sex");
 
 $rows = array();
 while($r = mysqli_fetch_array($result)) {

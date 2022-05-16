@@ -8,7 +8,7 @@ include('../dist/includes/dbcon.php');
 $start=$_SESSION['start'];
 $end=$_SESSION['end'];
 
-$query = mysqli_query($con,"select *, COUNT(*) as total,date_format(track_date, '%Y-%m-%d') as formatted_date from track natural join user natural join category where date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by cat_id")or die(mysqli_error($con));
+$query = mysqli_query($con,"select cat_name,COUNT(user_id) as total,cat_id from track inner join user using (user_id) natural join category where date_format(track_date, '%Y-%m-%d') BETWEEN '$start' and '$end' group by cat_id")or die(mysqli_error($con));
 
 $category = array();
 $category['name'] = 'Total';
