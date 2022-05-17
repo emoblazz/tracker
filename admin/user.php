@@ -90,8 +90,9 @@
                     <td><?php echo $row['user_last'];?>
                     <td><?php echo $row['user_first'];?>
                     <td><?php echo $row['user_contact'];?>
-                    <td><?php echo $row['user_address']//.", ".$row['city_name'];?>
-                    <td><a href="<?php echo $row['qrcode'];?>"><img src="<?php echo $row['qrcode'];?>" style="width: 50px;height: 50px"></a>
+                    <td><?php echo $row['user_address'].", ".$row['city_name'];?>
+                    <td><a href="<?php echo $row['qrcode']."?text=".$row['user_id'];?>" data-toggle="lightbox" data-title="<?php echo $row['user_last'].", ".$row['user_first'];?>" data-gallery="gallery">
+                        <img src="<?php echo $row['qrcode']."?text=".$row['user_id'];?>" style="width: 50px;height: 50px" class="img-fluid mb-2" alt="white sample"></a>
                     </td>
                     <td>
                       <a class="btn text-success" data-toggle="modal" data-target="#modal-default<?php echo $id;?>"><i class="fas fa-edit"></i></a>
@@ -405,6 +406,22 @@
       "responsive": true,
     });
   });
+</script>
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
 </script>
 </body>
 </html>
