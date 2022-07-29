@@ -25,7 +25,7 @@ $today=date("Y-m-d");
 
 							    echo "<script>
 										setTimeout(function () {
-       									window.location.href = 'scan.php'; 
+       									window.location.href = 'index.php'; 
     									}, 1000); 
 									</script>";
 			 	 				//echo "<script>document.location='attendance.php'</script>";
@@ -49,27 +49,19 @@ $today=date("Y-m-d");
 	          				
 							           	mysqli_query($con,"INSERT INTO track(user_id,track_date) VALUES('$display','$date')")or die(mysqli_error()); 
 							         		
-							         		if ($row['audio']=="")
-							         		{
+							         		
 								        		echo "<audio controls autoplay hidden='true'>
 												<source src='dist/audio/welcome.ogg' type='audio/ogg'>
 												<source src='dist/audio/welcome.mp3' type='audio/mpeg'>
 												Your browser does not support the audio element.
 											    </audio>";
-											}
-											else
-											{
-												echo "<audio controls autoplay hidden='true'>
-												<source src='$audio' type='audio/mpeg'>
-												Your browser does not support the audio element.
-											    </audio>";
-											}
+											
 										}
 
 								echo "<script>
 										setTimeout(function () {
-		       							window.location.href = 'scan.php'; 
-		    							}, 2000); 
+		       							window.location.href = 'index.php'; 
+		    							}, 500); 
 									</script>";
 						}
 					else{

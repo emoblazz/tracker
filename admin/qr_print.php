@@ -108,7 +108,7 @@
                           
                       ?>  
                       <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: center;border-bottom: 1px solid #000;margin-bottom: 10px">     
-                        <img src="<?php echo $filePath;?>" style="height: 150px;width: 150px;margin-bottom: 20px" class="border border-primary">
+                        <img src="<?php echo $filePath;?>" style="height: 180px;width: 180px;margin-bottom: 20px" class="border border-primary">
                         <h4 style="text-align: center"><?php echo $value;?></h4><br>
                       </div>
                       <?php

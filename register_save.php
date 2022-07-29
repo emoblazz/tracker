@@ -32,5 +32,5 @@ include('dist/includes/dbcon.php');
 						  echo "<script type='text/javascript'>alert('You have successfully registered! Please  Scan QR Code again!');</script>";
 						  
 			}
-			echo "<script>document.location='scan.php'</script>";  	
+			echo "<script>document.location='index.php'</script>";  	
 ?>

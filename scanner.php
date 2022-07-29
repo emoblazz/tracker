@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <script src="dist/js/html5-qrcode.min.js"></script>
+  <script src="dist/js/html5-qrcode1.min.js"></script>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -48,21 +48,14 @@
             Layout.initTwitter();
         });
 
+        function onScanSuccess(decodedText, decodedResult) {
+            // Handle on success condition with the decoded text or result.
+            console.log(`Scan result: ${decodedText}`, decodedResult);
+        }
+
         var html5QrcodeScanner = new Html5QrcodeScanner(
-        "reader", { fps: 10, qrbox: 500 });
-            
-            function onScanSuccess(decodedText, decodedResult) {
-                // Handle on success condition with the decoded text or result.
-                document.result.display.value = decodedText;
-                //console.log(`Scan result: ${decodedText}`, decodedResult);
-                document.getElementById("result").submit();
-
-                // ...
-                html5QrcodeScanner.clear();
-                // ^ this will stop the scanner (video feed) and clear the scan area.
-            }
-
-            html5QrcodeScanner.render(onScanSuccess);
+          "reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess);
     </script>
 </body>
 </html>
